@@ -9,6 +9,12 @@ class Profile(models.Model):
     Attributes:
         user (OneToOneField): The associated User instance.
         favorite_city (CharField, optional): The favorite city of the user.
+
+    Methods:
+        __str__: Returns a string representation of the profile.
+
+    Meta:
+        verbose_name_plural (str): The plural name used in the Django admin interface.
     """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
@@ -19,3 +25,10 @@ class Profile(models.Model):
         Returns a string representation of the profile.
         """
         return self.user.username
+
+    class Meta:
+        """
+        Specifies metadata options for the Profile model.
+        """
+
+        verbose_name_plural = "Profiles"

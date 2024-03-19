@@ -13,6 +13,15 @@ class Address(models.Model):
         state (CharField): The state (abbreviated).
         zip_code (PositiveIntegerField): The ZIP code.
         country_iso_code (CharField): The ISO country code.
+
+    Methods:
+        __str__: Returns a string representation of the address.
+
+    Meta:
+        Specifies metadata options for the Address model.
+
+    Attributes:
+        verbose_name_plural (str): The plural name used in the Django admin interface.
     """
 
     number = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
@@ -30,6 +39,13 @@ class Address(models.Model):
         """
         return f"{self.number} {self.street}"
 
+    class Meta:
+        """
+        Specifies metadata options for the Address model.
+        """
+
+        verbose_name_plural = "Addresses"
+
 
 class Letting(models.Model):
     """
@@ -38,6 +54,15 @@ class Letting(models.Model):
     Attributes:
         title (CharField): The title of the letting.
         address (OneToOneField): The address of the letting.
+
+    Methods:
+        __str__: Returns a string representation of the letting.
+
+    Meta:
+        Specifies metadata options for the Letting model.
+
+    Attributes:
+        verbose_name_plural (str): The plural name used in the Django admin interface.
     """
 
     title = models.CharField(max_length=256)
@@ -48,3 +73,10 @@ class Letting(models.Model):
         Returns a string representation of the letting.
         """
         return self.title
+
+    class Meta:
+        """
+        Specifies metadata options for the Letting model.
+        """
+
+        verbose_name_plural = "Lettings"
