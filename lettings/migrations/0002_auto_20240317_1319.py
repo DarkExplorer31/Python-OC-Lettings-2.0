@@ -4,14 +4,8 @@ from django.core.validators import MaxValueValidator, MinLengthValidator
 from django.db import migrations, models
 
 
-class Migration(migrations.Migration):
-
-    dependencies = [
-        ("lettings", "0001_initial"),
-        ("oc_lettings_site", "0001_initial"),
-    ]
-
-    def copy_data_from_source_to_target(apps, schema_editor):
+def copy_data_from_source_to_target(apps, schema_editor):
+    try:
         SourceAddress = apps.get_model("oc_lettings_site", "Address")
         TargetAddress = apps.get_model("lettings", "Address")
         for item in SourceAddress.objects.all():
@@ -23,10 +17,24 @@ class Migration(migrations.Migration):
                 zip_code=item.zip_code,
                 country_iso_code=item.country_iso_code,
             )
+    except LookupError as e:
+        print(f"Error: {e}")
+
+    try:
         SourceLetting = apps.get_model("oc_lettings_site", "Letting")
         TargetLetting = apps.get_model("lettings", "Letting")
         for item in SourceLetting.objects.all():
             TargetLetting.objects.create(title=item.title, address_id=item.address_id)
+    except LookupError as e:
+        print(f"Error: {e}")
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ("lettings", "0001_initial"),
+        ("oc_lettings_site", "0001_initial"),
+    ]
 
     operations = [
         migrations.RunPython(copy_data_from_source_to_target),
