@@ -1,6 +1,7 @@
 import os
 import sentry_sdk
 import logging
+import logging.config
 
 
 from pathlib import Path
@@ -11,23 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s"
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-
-
-# Sentry
-sentry_sdk.init(
-    dsn=os.environ.get("SENTRY_DSN"),
-    enable_tracing=True,
-    traces_sample_rate=0.1,
-    profiles_sample_rate=0.1,
-)
 
 # Application definition
 
@@ -128,6 +116,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+# Configure logging
+logger = logging.getLogger(__name__)
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -166,3 +157,29 @@ LOGGING = {
 }
 
 logging.config.dictConfig(LOGGING)
+
+# Initialize Sentry
+sentry_dsn = os.environ.get("SENTRY_DSN")
+if sentry_dsn:
+    sentry_sdk.init(
+        dsn=sentry_dsn,
+        enable_tracing=True,
+        traces_sample_rate=0.1,
+        profiles_sample_rate=0.1,
+    )
+else:
+    logger.warning(
+        "The SENTRY_DSN environment variable is not defined."
+        + " Please contact the previous developer to obtain the link."
+    )
+
+# Retrieve secret key from environment variable
+secret_key = os.environ.get("SECRET_KEY")
+
+# Check if secret key is defined
+if secret_key:
+    SECRET_KEY = secret_key
+else:
+    logger.warning(
+        "The SECRET_KEY environment variable is not defined. Please set it to a secure value."
+    )
