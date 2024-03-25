@@ -1,4 +1,7 @@
 import os
+import sentry_sdk
+import logging
+
 
 from pathlib import Path
 
@@ -17,6 +20,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
+
+# Sentry
+sentry_sdk.init(
+    dsn=os.environ.get("SENTRY_DSN"),
+    enable_tracing=True,
+    traces_sample_rate=0.1,
+    profiles_sample_rate=0.1,
+)
 
 # Application definition
 
@@ -116,3 +127,42 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    # Loggers
+    "loggers": {
+        # Logger for Django components
+        "django": {
+            "handlers": ["console"],  # Handlers associated with this logger
+            "level": "WARNING",  # Log level for this logger (WARNING)
+            "propagate": True,  # Propagate messages to parent loggers
+        },
+        # Logger for the "oc_lettings_site" application
+        "oc_lettings_site": {
+            "handlers": ["console"],  # Handlers associated with this logger
+            "level": "DEBUG",  # Log level for this logger (DEBUG)
+            "propagate": False,  # Do not propagate messages to parent loggers
+        },
+        # Logger for the "lettings" application
+        "lettings": {
+            "handlers": ["console"],  # Handlers associated with this logger
+            "level": "DEBUG",  # Log level for this logger (DEBUG)
+            "propagate": False,  # Do not propagate messages to parent loggers
+        },
+        # Logger for the "profile" application
+        "profile": {
+            "handlers": ["console"],  # Handlers associated with this logger
+            "level": "DEBUG",  # Log level for this logger (DEBUG)
+            "propagate": False,  # Do not propagate messages to parent loggers
+        },
+    },
+}
+
+logging.config.dictConfig(LOGGING)
