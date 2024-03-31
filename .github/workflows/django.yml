@@ -25,6 +25,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Set up environment variables
+      run: |
+        echo "export SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> $GITHUB_ENV
+        echo "export SECRET_KEY=${{ secrets.SECRET_KEY }}" >> $GITHUB_ENV
     - name: Run Tests
       run: |
         python manage.py test

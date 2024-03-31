@@ -180,6 +180,7 @@ secret_key = os.environ.get("SECRET_KEY")
 if secret_key:
     SECRET_KEY = secret_key
 else:
-    logger.warning(
-        "The SECRET_KEY environment variable is not defined. Please set it to a secure value."
+    logger.error(
+        "The SECRET_KEY environment variable is not defined. "
+        + "Please contact the previous developer to obtain the link."
     )
