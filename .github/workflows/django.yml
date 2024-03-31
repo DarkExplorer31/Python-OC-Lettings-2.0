@@ -31,3 +31,7 @@ jobs:
         SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
       run: |
         python manage.py test
+    - name: Check Code Quality
+      run: |
+        pip install flake8  # Installe Flake8
+        flake8 .
