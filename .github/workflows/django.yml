@@ -36,7 +36,7 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
-          pytest --cov=.
+          pytest -v
 
   code_quality:
     runs-on: ubuntu-latest
