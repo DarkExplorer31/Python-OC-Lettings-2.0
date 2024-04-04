@@ -1,9 +1,7 @@
-name: Django CI
+name: OC-Lettings 2.0 CI
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: [ "master" ]
 
 jobs:
@@ -16,15 +14,11 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Show files
-        run: |
-          ls -R
-
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
@@ -43,7 +37,7 @@ jobs:
     if: ${{ needs.build.result == 'success' }}
     steps:
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Show files
@@ -62,7 +56,7 @@ jobs:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           pytest -v
-
+          
   code_quality:
     runs-on: ubuntu-latest
     needs: test
