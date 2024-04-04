@@ -21,10 +21,17 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Show files
+        run: |
+          ls -R
+
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+      - name: Show files after installing dependencies
+        run: |
+          ls -R
 
   test:
     runs-on: ubuntu-latest
@@ -39,9 +46,15 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Show files
+        run: |
+          ls -R
       - name: Install pytest
         run: |
           pip install pytest
+      - name: Show files after installing pytest
+        run: |
+          ls -R
       - name: Run Tests
         id: tests
         env:
@@ -55,5 +68,8 @@ jobs:
     needs: test
     if: ${{ needs.test.result == 'success' }}
     steps:
+      - name: Show files
+        run: |
+          ls -R
       - name: Check Code Quality
         uses: PyCQA/flake8-action@v3
