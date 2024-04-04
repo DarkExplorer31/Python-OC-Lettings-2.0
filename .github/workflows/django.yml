@@ -26,6 +26,9 @@ jobs:
         pip install -r requirements.txt
 
   test:
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ needs.build.result == 'success' }}
     steps:
       - name: Run Tests
         id: tests
@@ -36,9 +39,9 @@ jobs:
           pytest --cov=.
 
   code_quality:
+    runs-on: ubuntu-latest
     needs: test
     if: ${{ needs.test.result == 'success' }}
-    runs-on: ubuntu-latest
     steps:
       - name: Check Code Quality
         uses: PyCQA/flake8-action@v3
