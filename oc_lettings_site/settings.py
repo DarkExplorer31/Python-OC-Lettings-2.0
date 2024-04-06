@@ -2,13 +2,14 @@ import os
 import sentry_sdk
 import logging
 import logging.config
-
+from dotenv import load_dotenv
 
 from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -159,7 +160,7 @@ LOGGING = {
 logging.config.dictConfig(LOGGING)
 
 # Initialize Sentry
-sentry_dsn = os.environ.get("SENTRY_DSN")
+sentry_dsn = os.getenv("SENTRY_DSN")
 if sentry_dsn:
     sentry_sdk.init(
         dsn=sentry_dsn,
@@ -174,7 +175,7 @@ else:
     )
 
 # Retrieve secret key from environment variable
-secret_key = os.environ.get("SECRET_KEY")
+secret_key = os.getenv("SECRET_KEY")
 
 # Check if secret key is defined
 if secret_key:
