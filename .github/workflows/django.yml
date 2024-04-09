@@ -1,8 +1,9 @@
 name: OC-Lettings 2.0 CI
 
 on:
-  push:
-    branches: [ "master" ]
+  push: 
+    branches-ignore:
+      - 'none'
 
 jobs:
   build:
