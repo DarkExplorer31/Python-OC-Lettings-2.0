@@ -2,8 +2,9 @@ import os
 import sentry_sdk
 import logging
 import logging.config
-from dotenv import load_dotenv
+import dj_database_url
 
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -34,6 +35,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -65,14 +67,34 @@ WSGI_APPLICATION = "oc_lettings_site.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "oc-lettings-site.sqlite3"),
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "oc-lettings-site.sqlite3"),
+        }
     }
-}
+else:
+    # Retrieve secret db password from environment variable
+    db_password = os.getenv("DB_PASSWORD")
+    db_hostname = os.getenv("DB_HOSTNAME")
 
+    # Check if secret db password is defined
+    if db_password and db_hostname:
+        DATABASES = {
+            "default": dj_database_url.config(
+                default="postgres://main:{password}".format(password=db_password)
+                + "@{hostname}.frankfurt-postgres.render.com/oc_lettings_site_vaog".format(
+                    hostname=db_hostname
+                )
+            )
+        }
+    else:
+        raise ValueError(
+            "DB_PASSWORD and DB_HOSTNAME environment variable is not defined."
+        )
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -113,6 +135,12 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_URL = "/static/"
+
+if not DEBUG:
+    STORAGES = {
+        "staticfiles": {"BACKEND": "whitenoise.storage.CompressedStaticFilesStorage"}
+    }
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]

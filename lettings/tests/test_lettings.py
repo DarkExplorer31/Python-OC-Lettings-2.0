@@ -1,8 +1,8 @@
 import pytest
 
 from django.urls import reverse
-from django.test import Client
 from pytest_django.asserts import assertTemplateUsed
+
 
 from lettings.apps import LettingsConfig
 
@@ -17,7 +17,6 @@ def test_lettings_index_view(client, lettings_fixture):
         lettings_fixture: Fixture providing test data for lettings.
     """
     address1, letting1, address2, letting2 = lettings_fixture
-    client = Client()
     url = reverse("lettings:lettings_index")
     response = client.get(url)
     assert response.status_code == 200
@@ -36,7 +35,6 @@ def test_lettings_view(client, lettings_fixture):
         lettings_fixture: Fixture providing test data for lettings.
     """
     address1, letting1, address2, letting2 = lettings_fixture
-    client = Client()
     url = reverse("lettings:letting", args=[letting1.id])
     response = client.get(url)
     assert response.status_code == 200

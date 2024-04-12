@@ -1,6 +1,7 @@
 """conftest for Lettings app"""
 
 import pytest
+
 from lettings.models import Address, Letting
 
 
