@@ -83,10 +83,8 @@ else:
     if db_password and db_hostname:
         DATABASES = {
             "default": dj_database_url.config(
-                default="postgres://main:{password}".format(password=db_password)
-                + "@{hostname}.frankfurt-postgres.render.com/oc_lettings_site_vaog".format(
-                    hostname=db_hostname
-                )
+                default=f"postgres://main:{db_password}"
+                + f"@{db_hostname}.frankfurt-postgres.render.com/oc_lettings_site_vaog"
             )
         }
     else:
