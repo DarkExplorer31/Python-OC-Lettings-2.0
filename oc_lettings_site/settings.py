@@ -204,9 +204,7 @@ else:
 secret_key = os.getenv("SECRET_KEY")
 
 # Check if secret key is defined
-if secret_key:
-    SECRET_KEY = secret_key
-else:
+if not secret_key:
     logger.error(
         "The SECRET_KEY environment variable is not defined. "
         + "Please contact the previous developer to obtain the link."
