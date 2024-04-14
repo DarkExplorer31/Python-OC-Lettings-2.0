@@ -85,3 +85,20 @@ jobs:
           DB_HOSTNAME: ${{ secrets.DB_HOSTNAME }}
         run: |
           flake8 .
+  
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.11]
+    needs: code_quality
+    if: ${{ needs.code_quality.result == 'success' && github.ref == 'refs/heads/master' }}
+    steps:
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
+          
