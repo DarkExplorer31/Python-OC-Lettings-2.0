@@ -1,4 +1,6 @@
-# Holiday Homes
+# OC-Lettings 2.0
+
+Welcome to the OC-Lettings 2.0 project! This repository contains the source code for the Orange County Lettings website.
 
 ![deployed-on-Render](/badges/deployed-on-render.svg),
 ![built-with-Django](/badges/build-with-django.svg),
