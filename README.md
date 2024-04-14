@@ -1,10 +1,9 @@
-# Holiday_Homes
-Build with:
+# Holiday Homes
 
-![deployed-on-Render](/badges/deployed-on-render.svg)
-![built-with-Django](/badges/build-with-django.svg)
-![using-sentry](/badges/using-sentry.svg)
-![contenering-in-docker](/badges/contenering-in-docker.svg)
+![deployed-on-Render](/badges/deployed-on-render.svg),
+![built-with-Django](/badges/build-with-django.svg),
+![using-sentry](/badges/using-sentry.svg),
+![contenering-in-docker](/badges/contenering-in-docker.svg),
 
 See the website deployed [here](https://oc-lettings-2-0.onrender.com).
 
