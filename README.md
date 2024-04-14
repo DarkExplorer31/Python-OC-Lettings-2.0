@@ -1,77 +1,117 @@
-## Résumé
+# Holiday_Homes
+Build with:
 
-Site web d'Orange County Lettings
+![deployed-on-Render](/badges/deployed-on-render.svg)
+![built-with-Django](/badges/build-with-django.svg)
+![using-sentry](/badges/using-sentry.svg)
+![contenering-in-docker](/badges/contenering-in-docker.svg)
 
-## Développement local
+See the website deployed [here](https://oc-lettings-2-0.onrender.com).
 
-### Prérequis
+Deployed on Render with a free instance. The first time you visit this address, the website may take some time to load.
 
-- Compte GitHub avec accès en lecture à ce repository
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Contributing](#contributing)
+- [Database](#database)
+- [Docker](#docker)
+
+## Prerequisites
+
+- GitHub Account
 - Git CLI
 - SQLite3 CLI
-- Interpréteur Python, version 3.6 ou supérieure
+- Python, version 3.6 or higher
+- Docker Account (if you want to pull the Docker image)
+- Sentry Account
+- Render Account
 
-Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
+Make sure you have access to the following environment variables:
+- SECRET_KEY: the secret key from Django app
+- SENTRY_DSN: the link to Sentry
+- DB_HOSTNAME: the Hostname for the distant database
+- DB_PASSWORD: The password for the distant database
+- RENDER_DEPLOY_URL: The secret Render deploy hook.
 
-### macOS / Linux
+In the rest of the documentation for local development, it is assumed that the `python` command in your OS shell runs the Python interpreter above (unless a virtual environment is activated).
 
-#### Cloner le repository
+## Contributing
+
+### Clone the Repository
 
 - `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+- `git clone https://github.com/DarkExplorer31/Python-OC-Lettings-2.0`
 
-#### Créer l'environnement virtuel
+### Create Environment
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- `python -m venv venv`
-- `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
-- Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
-`which python`
-- Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
-- Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
-- Pour désactiver l'environnement, `deactivate`
+- `python -m venv env`
+- Activate the virtual environment with the following command: `source env/bin/activate` or `env\Scripts\activate` ( with PowerShell )
+- Confirm the Python version is 3.6 or higher by running: `python --version`
+- To deactivate the environment, simply use: `deactivate
 
-#### Exécuter le site
+### Run website
 
 - `cd /path/to/Python-OC-Lettings-FR`
 - `source venv/bin/activate`
 - `pip install --requirement requirements.txt`
 - `python manage.py runserver`
-- Aller sur `http://localhost:8000` dans un navigateur.
-- Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
+- Go to `http://localhost:8000` in a web browser.
 
-#### Linting
+### Linting
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
+- `source env/bin/activate` or `env\Scripts\activate` ( with PowerShell )
 - `flake8`
 
-#### Tests unitaires
+### Unit tests
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pytest`
+- `source venv/bin/activate` or `env\Scripts\activate` ( with PowerShell )
+- `pytest -v` or `pytest --cov=.` ( if you want to see the coverage, currently at 83% )
 
-#### Base de données
+### Admin Panel
+
+- Navigate to: `http://localhost:8000/admin`
+- Sign in with the following credentials: 
+  - Username: `admin`
+  - Password: `Abc1234!`
+[Back to table of content](#table-of-contents)
+
+## Database
+
+### Local Database
 
 - `cd /path/to/Python-OC-Lettings-FR`
-- Ouvrir une session shell `sqlite3`
-- Se connecter à la base de données `.open oc-lettings-site.sqlite3`
-- Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
-- Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
-- `.quit` pour quitter
+- Open a PowerShell session: `sqlite3`
+- Connect to the database: `.open oc-lettings-site.sqlite3`
+- Show tables in the database: `.tables`
+- Show columns in the profile table: `pragma table_info(Python-OC-Lettings-FR_profile);`
+- Run a query in the profile table: `select user_id, favorite_city from Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
+- Use `.quit` to exit.
 
-#### Panel d'administration
+### Distant Database
 
-- Aller sur `http://localhost:8000/admin`
-- Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
+The distant database was created with PostgreSQL, exclusively online, on the Render website.
+It was named: `oc_lettings_site_vaog`.
+To add data to it:
+- Run this command: `python manage.py shell`
+- Import the model: `from letting.models import Address`
+- Create a new model: `address1 = Address.objects.create(...)`
+- To exit the Django shell, simply use: `exit()`
+[Back to table of content](#table-of-contents)
 
-### Windows
+## Docker
 
-Utilisation de PowerShell, comme ci-dessus sauf :
+You can find the Docker image for this project on [Docker Hub](https://hub.docker.com/repository/docker/darkmessiah31/oc-lettings/general).
 
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
-- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+To install Docker, follow the instructions [here](https://docs.docker.com/engine/install/).
+
+### Use this image
+
+-Clone the image: `docker pull darkmessiah31/oc-lettings:latest`
+-Run the image: `docker run darkmessiah31/oc-lettings:latest`
+-Now you can access the application locally by navigating to [http://localhost:8000](http://localhost:8000).
+
+**Note:** Please be aware that the data in this image is from a SQLite3 database, so it may differ from the data in the deployed website.
+[Back to table of content](#table-of-contents)
