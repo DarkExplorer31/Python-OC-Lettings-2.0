@@ -1,6 +1,6 @@
 # OC-Lettings 2.0
 
-Welcome to the OC-Lettings 2.0 project! This repository contains the source code for the Orange County Lettings website.
+Welcome to the OC-Lettings 2.0 project! This repository contains the restructured source code for the Orange County Lettings website.
 
 ![deployed-on-Render](/badges/deployed-on-render.svg),
 ![built-with-Django](/badges/build-with-django.svg),
@@ -79,7 +79,7 @@ In the rest of the documentation for local development, it is assumed that the `
   - Password: `Abc1234!`
 [Back to table of content](#table-of-contents)
 
-## Database
+## Databases
 
 ### Local Database
 
