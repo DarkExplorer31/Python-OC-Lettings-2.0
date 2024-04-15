@@ -29,20 +29,20 @@ Contents
    :maxdepth: 2
 
    Structure
-      -Dependencies
-      -Structure
-      -Local Database
+      Dependencies
+      Structure
+      Local Database
    Quality and Maintainability
-      -Security Implementation
-      -Code Quality Control
-      -Unit Tests
-      -Sentry
+      Security Implementation
+      Code Quality Control
+      Unit Tests
+      Sentry
    Deployment
-      -CI/CD Pipeline
-      -GitHub Actions
-      -Docker
-      -Online Database
-      -Project Deployment on Render
+      CI/CD Pipeline
+      GitHub Actions
+      Docker
+      Online Database
+      Project Deployment on Render
 
 The refactoring most important points is defined by:
 
@@ -65,10 +65,12 @@ After Intervention:
     ``pytest -v`` or ``pytest --cov=.``, to view the test coverage percentage.
 
 3. **Addition of Docstrings**: Docstrings were added to each function to enhance code maintainability and facilitate contribution. 
-    For example: 
-    ``def __str__(self):
-        """
-        Returns a string representation of the profile.
-        """
-        return self.user.username``
-The inclusion of docstrings provides clear descriptions of the function's purpose and usage.
+    For example:
+    .. autoclass:: 
+      def __str__(self):
+          """
+          Returns a string representation of the profile.
+          """
+          return self.user.username
+          
+The  inclusion of docstrings provides clear descriptions of the function's purpose and usage.
