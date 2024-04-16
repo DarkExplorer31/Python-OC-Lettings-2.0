@@ -1,5 +1,5 @@
-Welcome to DarkExplorer31-Python-OC-Lettings-2.0's documentation!
-==================================================================
+Index
+=====
 
 Introduction
 ------------
@@ -29,20 +29,8 @@ Contents
    :maxdepth: 2
 
    Structure
-      Dependencies
-      Structure
-      Local Database
    Quality and Maintainability
-      Security Implementation
-      Code Quality Control
-      Unit Tests
-      Sentry
    Deployment
-      CI/CD Pipeline
-      GitHub Actions
-      Docker
-      Online Database
-      Project Deployment on Render
 
 The refactoring most important points is defined by:
 
@@ -72,5 +60,5 @@ After Intervention:
           Returns a string representation of the profile.
           """
           return self.user.username
-          
+
 The  inclusion of docstrings provides clear descriptions of the function's purpose and usage.
