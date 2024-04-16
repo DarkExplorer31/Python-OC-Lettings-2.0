@@ -65,56 +65,72 @@ Here is the complete requirements.txt:
      - ASGI server for deploying asyncio applications.
    * - ``whitenoise``
      - Django middleware for serving static files.
-     
+
 Structure:
 ==========
 
 Here, we will detail the project structure.
 
-Models
+Models:
 ------
 
-Trois modèles sont implémentés:
-
 **Address model**: Represents a physical address.
-   Attributes:
-      ``number (PositiveIntegerField)``: The number part of the address.
-      ``street (CharField)``: The name of the street.
-      ``city (CharField)``: The city.
-      ``state (CharField)``: The state (abbreviated).
-      ``zip_code (PositiveIntegerField)``: The ZIP code.
-      ``country_iso_code (CharField)``: The ISO country code.
-   Methods:
-       __str__: Returns a string representation of the address.
-   Meta:
-       Specifies metadata options for the Address model.
-   Meta Attributes:
-       verbose_name_plural (str): The plural name used in the Django admin interface.
++----------------------+------------------------------------+
+| Attribute (Field)    | Description                        |
++======================+====================================+
+| ``number``           | The number part of the address.    |
++----------------------+------------------------------------+
+| ``street``           | The name of the street.            |
++----------------------+------------------------------------+
+| ``city``             | The city.                          |
++----------------------+------------------------------------+
+| ``state``            | The state (abbreviated).           |
++----------------------+------------------------------------+
+| ``zip_code``         | The ZIP code.                      |
++----------------------+------------------------------------+
+| ``country_iso_code`` | The ISO country code.              |
++----------------------+------------------------------------+
 
-**Letting model**: Represents a letting (e.g., property for rent).
-   Attributes:
-      ``title (CharField)``: The title of the letting.
-      ``address (OneToOneField)``: The address of the letting.
+Methods:
+``__str__``: Returns a string representation of the address.
 
-   Methods:
-       __str__: Returns a string representation of the letting.
+Meta:
+Specifies metadata options for the Address model.
 
-   Meta:
-       Specifies metadata options for the Letting model.
++------------------------+--------------------------------------+
+| Meta Attribute         | Description                          |
++========================+======================================+
+| ``verbose_name_plural``| The plural name used in the Django   |
+|                        | admin interface.                     |
++------------------------+--------------------------------------+
 
-   Meta Attributes:
-       verbose_name_plural (str): The plural name used in the Django admin interface.
+**Letting model**: Represents a letting.
++-----------------------+-------------------------------------+
+| Attribute (Field)     | Description                         |
++=======================+=====================================+
+| ``title``             | The title of the letting.           |
++-----------------------+-------------------------------------+
+| ``address``           | The address of the letting.         |
++-----------------------+-------------------------------------+
+
+Methods:
+``__str__``: Returns a string representation of the letting.
+
+Meta:
+Specifies metadata options for the Letting model.
+Same attribute as in the previous model.
 
 **Profile model**: Represents a user profile associated with a Django User.
-   Attributes:
-      ``user (OneToOneField)``: The associated User instance.
-      ``favorite_city (CharField, optional)``: The favorite city of the user.
++-----------------------+------------------------------------------+
+| Attribute (Field)     | Description                              |
++=======================+==========================================+
+| ``user``              | The associated User instance.            |
++-----------------------+------------------------------------------+
+| ``favorite_city``     | The favorite city of the user. (optional)|
++-----------------------+------------------------------------------+
 
-   Methods:
-       __str__: Returns a string representation of the profile.
-
-   Meta:
-       verbose_name_plural (str): The plural name used in the Django admin interface.
+Methods:
+``__str__``: Returns a string representation of the profile.
 
 Views
 -----
