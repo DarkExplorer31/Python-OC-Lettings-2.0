@@ -10,13 +10,13 @@ These dependencies play a crucial role in the development, testing, and deployme
 providing various utilities and tools for different aspects of software development.
 
 .. list-table::
-   :widths: 25 75
+   :widths: 30 70
    :header-rows: 1
 
    * - Package
      - Description
    * - ``asgiref``
-     - Library for Django web servers. It provides an ASGI specification for Django web applications, allowing them to handle asyncronous requests.
+     - Library for Django web servers. It provides an ASGI specification for Django web applications, allowing them to handle asynchronous requests.
    * - ``Brotli``
      - Compression library. Brotli is a generic-purpose lossless compression algorithm developed by Google, designed to achieve better compression ratios than existing algorithms such as gzip.
    * - ``certifi``
@@ -60,7 +60,7 @@ providing various utilities and tools for different aspects of software developm
    * - ``uvicorn``
      - ASGI server for deploying asyncio applications. Uvicorn is a lightning-fast ASGI server for Python web applications, designed for deploying asyncio-based applications with optimal performance and scalability.
    * - ``whitenoise``
-     - Django middleware for serving static files. Whitenoise is a Django middleware
+     - Django middleware for serving static files. Whitenoise is a Django middleware that allows the efficient serving of static files in production environments, improving performance and security.
 
 
 Structure:
@@ -79,7 +79,8 @@ Address model
 ~~~~~~~~~~~~~
 
 Represents a physical address.
-.. list-table:: Attributes
+
+.. list-table::
    :widths: 40 60
    :header-rows: 1
 
@@ -118,6 +119,7 @@ Letting model
 ~~~~~~~~~~~~~
 
 Represents a letting.
+
 .. list-table:: Attributes
    :widths: 30 25
    :header-rows: 1
@@ -140,6 +142,7 @@ Profile model
 ~~~~~~~~~~~~~
 
 Represents a user profile associated with a Django User.
+
 .. list-table:: Attributes
    :widths: 30 25
    :header-rows: 1
@@ -169,7 +172,7 @@ Index views (for Lettings and Profiles)
        HttpResponse: Rendered HTML response.
 
    **Example**:
-   .. code-block:: python
+   .. codeblock:: python
        def index(request):
            lettings_list = Letting.objects.all()
            context = {"lettings_list": lettings_list}
@@ -187,7 +190,7 @@ Letting view
        HttpResponse: Rendered HTML response.
 
    **Code**:
-   .. code-block:: python
+   .. codeblock:: python
        def letting(request, letting_id):
            letting = Letting.objects.get(id=letting_id)
            context = {
@@ -203,11 +206,11 @@ Profile view
    Args:
         request: HttpRequest object representing the HTTP request.
         username (str): Username of the user whose profile is to be displayed.
-    Returns:
-        HttpResponse: Rendered HTML response.
+   Returns:
+       HttpResponse: Rendered HTML response.
 
    **Code**:
-   .. code-block:: python
+   .. codeblock:: python
        def profile(request, username):
           profile = Profile.objects.get(user__username=username)
           context = {"profile": profile}
@@ -224,7 +227,7 @@ oc_lettings_site URLs
 In the "oc_lettings_site" application:
 
 **Code**:
-.. code-block:: python
+.. codeblock:: python
 
     from django.urls import path
     from . import views
@@ -242,7 +245,7 @@ lettings URLs
 In the "lettings" application:
 
 **Code**:
-.. code-block:: python
+.. codeblock:: python
 
     from django.urls import path
     from . import views
@@ -260,7 +263,7 @@ profiles URLs
 In the "profiles" application:
 
 **Code**:
-.. code-block:: python
+.. codeblock:: python
 
     from django.urls import path
     from . import views
@@ -283,19 +286,19 @@ it's important to note that any changes made here will not reflect on the deploy
 
 To utilize this local database, ensure that the ``DEBUG`` setting is set to ``True`` in your ``settings.py`` file. If it's not already set, you can make this adjustment as follows:
 
-.. code-block:: python
+.. codeblock:: python
 
    DEBUG = True
 
 Once you've configured the ``DEBUG`` setting appropriately, you can perform CRUD operations on this database using the Django shell. Simply run the following command:
 
-.. code-block:: shell
+.. codeblock:: shell
 
    python manage.py shell
 
 Here's an example demonstrating how to create objects in the database:
 
-.. code-block:: python
+.. codeblock:: python
 
    address1 = Address.objects.create(
        number=65,

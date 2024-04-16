@@ -49,7 +49,7 @@ After Intervention:
 ===================
 
 1. **Refactored Application Structure**: Following the refactoring process, the project was divided into three applications:
-   - `oc-lettings`: Contains site configuration.
+   - `oc_lettings_site`: Contains site configuration.
    - `lettings`: Contains Address and Lettings models.
    - `profile`: Dedicated to the Profile model.
 2. **Unit Testing Implementation**: Nine unit tests were implemented across the applications, achieving a total test coverage of 83%. These tests can be executed using the following command:
@@ -57,7 +57,7 @@ After Intervention:
 
 3. **Addition of Docstrings**: Docstrings were added to each function to enhance code maintainability and facilitate contribution. 
     For example:
-    .. autoclass:: 
+    .. codeblock:: python
       def __str__(self):
           """
           Returns a string representation of the profile.
