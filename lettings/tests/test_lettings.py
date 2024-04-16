@@ -1,6 +1,7 @@
 import pytest
 
 from django.urls import reverse
+from django.test import Client
 from pytest_django.asserts import assertTemplateUsed
 
 
@@ -8,16 +9,16 @@ from lettings.apps import LettingsConfig
 
 
 @pytest.mark.django_db
-def test_lettings_index_view(client, lettings_fixture):
+def test_lettings_index_view(lettings_fixture):
     """
     Test the lettings index view.
 
     Args:
-        client: Django test client.
         lettings_fixture: Fixture providing test data for lettings.
     """
     address1, letting1, address2, letting2 = lettings_fixture
     url = reverse("lettings:lettings_index")
+    client = Client()
     response = client.get(url)
     assert response.status_code == 200
     assertTemplateUsed(response, "lettings/index.html")
@@ -26,16 +27,16 @@ def test_lettings_index_view(client, lettings_fixture):
 
 
 @pytest.mark.django_db
-def test_lettings_view(client, lettings_fixture):
+def test_lettings_view(lettings_fixture):
     """
     Test the letting view.
 
     Args:
-        client: Django test client.
         lettings_fixture: Fixture providing test data for lettings.
     """
     address1, letting1, address2, letting2 = lettings_fixture
     url = reverse("lettings:letting", args=[letting1.id])
+    client = Client()
     response = client.get(url)
     assert response.status_code == 200
     assertTemplateUsed(response, "lettings/letting.html")

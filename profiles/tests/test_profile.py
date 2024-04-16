@@ -9,12 +9,11 @@ from profiles.apps import ProfilesConfig
 
 
 @pytest.mark.django_db
-def test_profiles_index_view(client, profiles_fixture):
+def test_profiles_index_view(profiles_fixture):
     """
     Test the profiles index view.
 
     Args:
-        client: Django test client.
         profiles_fixture: Fixture providing test data.
     """
     user1, user2 = profiles_fixture
@@ -26,12 +25,11 @@ def test_profiles_index_view(client, profiles_fixture):
 
 
 @pytest.mark.django_db
-def test_profile_view(client, profiles_fixture):
+def test_profile_view(profiles_fixture):
     """
     Test the profile view.
 
     Args:
-        client: Django test client.
         profiles_fixture: Fixture providing test data.
     """
     user1, user2 = profiles_fixture

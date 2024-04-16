@@ -57,8 +57,9 @@ After Intervention:
 
 3. **Addition of Docstrings**: Docstrings were added to each function to enhance code maintainability and facilitate contribution. 
     For example:
-    
+
 .. code-block:: python
+   
     def __str__(self):
         """
         Returns a string representation of the profile.
