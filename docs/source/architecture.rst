@@ -172,8 +172,8 @@ Index views (for Lettings and Profiles)
        HttpResponse: Rendered HTML response.
 
    **Example**:
-   
-   .. codeblock:: python
+
+   .. code-block:: python
        def index(request):
            lettings_list = Letting.objects.all()
            context = {"lettings_list": lettings_list}
@@ -192,7 +192,7 @@ Letting view
 
    **Code**:
 
-   .. codeblock:: python
+   .. code-block:: python
        def letting(request, letting_id):
            letting = Letting.objects.get(id=letting_id)
            context = {
@@ -213,7 +213,7 @@ Profile view
 
    **Code**:
 
-   .. codeblock:: python
+   .. code-block:: python
        def profile(request, username):
           profile = Profile.objects.get(user__username=username)
           context = {"profile": profile}
@@ -231,7 +231,7 @@ In the "oc_lettings_site" application:
 
 **Code**:
 
-.. codeblock:: python
+.. code-block:: python
 
     from django.urls import path
     from . import views
@@ -250,7 +250,7 @@ In the "lettings" application:
 
 **Code**:
 
-.. codeblock:: python
+.. code-block:: python
 
     from django.urls import path
     from . import views
@@ -269,7 +269,7 @@ In the "profiles" application:
 
 **Code**:
 
-.. codeblock:: python
+.. code-block:: python
 
     from django.urls import path
     from . import views
@@ -292,19 +292,19 @@ it's important to note that any changes made here will not reflect on the deploy
 
 To utilize this local database, ensure that the ``DEBUG`` setting is set to ``True`` in your ``settings.py`` file. If it's not already set, you can make this adjustment as follows:
 
-.. codeblock:: python
+.. code-block:: python
 
    DEBUG = True
 
 Once you've configured the ``DEBUG`` setting appropriately, you can perform CRUD operations on this database using the Django shell. Simply run the following command:
 
-.. codeblock:: shell
+.. code-block:: shell
 
    python manage.py shell
 
 Here's an example demonstrating how to create objects in the database:
 
-.. codeblock:: python
+.. code-block:: python
 
    address1 = Address.objects.create(
        number=65,
