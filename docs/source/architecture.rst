@@ -173,11 +173,12 @@ Index views (for Lettings and Profiles)
 
    **Example**:
 
-   .. code-block:: python
-       def index(request):
-           lettings_list = Letting.objects.all()
-           context = {"lettings_list": lettings_list}
-           return render(request, "lettings/index.html", context)
+.. code-block:: python
+  
+   def index(request):
+       lettings_list = Letting.objects.all()
+       context = {"lettings_list": lettings_list}
+       return render(request, "lettings/index.html", context)
 
 Letting view
 ~~~~~~~~~~~~
@@ -192,14 +193,15 @@ Letting view
 
    **Code**:
 
-   .. code-block:: python
-       def letting(request, letting_id):
-           letting = Letting.objects.get(id=letting_id)
-           context = {
-               "title": letting.title,
-               "address": letting.address,
-           }
-           return render(request, "lettings/letting.html", context)
+.. code-block:: python
+
+   def letting(request, letting_id):
+       letting = Letting.objects.get(id=letting_id)
+       context = {
+           "title": letting.title,
+           "address": letting.address,
+       }
+       return render(request, "lettings/letting.html", context)
 
 Profile view
 ~~~~~~~~~~~~
@@ -213,11 +215,12 @@ Profile view
 
    **Code**:
 
-   .. code-block:: python
-       def profile(request, username):
-          profile = Profile.objects.get(user__username=username)
-          context = {"profile": profile}
-          return render(request, "profiles/profile.html", context)
+.. code-block:: python
+
+   def profile(request, username):
+      profile = Profile.objects.get(user__username=username)
+      context = {"profile": profile}
+      return render(request, "profiles/profile.html", context)
 
 URLs
 ----
@@ -233,15 +236,15 @@ In the "oc_lettings_site" application:
 
 .. code-block:: python
 
-    from django.urls import path
-    from . import views
+   from django.urls import path
+   from . import views
 
-    app_name = "profiles"
+   app_name = "profiles"
 
-    urlpatterns = [
-        path("", views.index, name="profiles_index"),
-        path("<str:username>/", views.profile, name="profile"),
-    ]
+   urlpatterns = [
+       path("", views.index, name="profiles_index"),
+       path("<str:username>/", views.profile, name="profile"),
+   ]
 
 lettings URLs
 ~~~~~~~~~~~~~
@@ -252,15 +255,15 @@ In the "lettings" application:
 
 .. code-block:: python
 
-    from django.urls import path
-    from . import views
+   from django.urls import path
+   from . import views
 
-    app_name = "lettings"
+   app_name = "lettings"
 
-    urlpatterns = [
-        path("", views.index, name="lettings_index"),
-        path("<int:letting_id>/", views.letting, name="letting"),
-    ]
+   urlpatterns = [
+       path("", views.index, name="lettings_index"),
+       path("<int:letting_id>/", views.letting, name="letting"),
+   ]
 
 profiles URLs
 ~~~~~~~~~~~~~
@@ -271,15 +274,15 @@ In the "profiles" application:
 
 .. code-block:: python
 
-    from django.urls import path
-    from . import views
+   from django.urls import path
+   from . import views
 
-    app_name = "profiles"
+   app_name = "profiles"
 
-    urlpatterns = [
-        path("", views.index, name="profiles_index"),
-        path("<str:username>/", views.profile, name="profile"),
-    ]
+   urlpatterns = [
+       path("", views.index, name="profiles_index"),
+       path("<str:username>/", views.profile, name="profile"),
+   ]
 
 
 Local Database
