@@ -172,6 +172,7 @@ Index views (for Lettings and Profiles)
        HttpResponse: Rendered HTML response.
 
    **Example**:
+   
    .. codeblock:: python
        def index(request):
            lettings_list = Letting.objects.all()
@@ -190,6 +191,7 @@ Letting view
        HttpResponse: Rendered HTML response.
 
    **Code**:
+
    .. codeblock:: python
        def letting(request, letting_id):
            letting = Letting.objects.get(id=letting_id)
@@ -210,6 +212,7 @@ Profile view
        HttpResponse: Rendered HTML response.
 
    **Code**:
+
    .. codeblock:: python
        def profile(request, username):
           profile = Profile.objects.get(user__username=username)
@@ -227,6 +230,7 @@ oc_lettings_site URLs
 In the "oc_lettings_site" application:
 
 **Code**:
+
 .. codeblock:: python
 
     from django.urls import path
@@ -245,6 +249,7 @@ lettings URLs
 In the "lettings" application:
 
 **Code**:
+
 .. codeblock:: python
 
     from django.urls import path
@@ -263,6 +268,7 @@ profiles URLs
 In the "profiles" application:
 
 **Code**:
+
 .. codeblock:: python
 
     from django.urls import path
