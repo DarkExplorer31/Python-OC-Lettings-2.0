@@ -1,4 +1,7 @@
-============
+======
+Index
+======
+
 Introduction
 ============
 
@@ -24,7 +27,7 @@ Contents
 
 .. toctree::
 
-   structure
+   architecture
    quality
    deployement
 
