@@ -25,7 +25,7 @@ Contents
 .. toctree::
 
    structure
-   quality_an_maintenability
+   quality
    deployement
 
 ===========
