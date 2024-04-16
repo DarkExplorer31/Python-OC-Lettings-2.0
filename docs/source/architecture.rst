@@ -172,7 +172,7 @@ Index views (for Lettings and Profiles)
        HttpResponse: Rendered HTML response.
 
    **Example**:
-   .. code-block:: python
+   .. codeblock:: python
        def index(request):
            lettings_list = Letting.objects.all()
            context = {"lettings_list": lettings_list}
@@ -190,7 +190,7 @@ Letting view
        HttpResponse: Rendered HTML response.
 
    **Code**:
-   .. code-block:: python
+   .. codeblock:: python
        def letting(request, letting_id):
            letting = Letting.objects.get(id=letting_id)
            context = {
@@ -210,7 +210,7 @@ Profile view
        HttpResponse: Rendered HTML response.
 
    **Code**:
-   .. code-block:: python
+   .. codeblock:: python
        def profile(request, username):
           profile = Profile.objects.get(user__username=username)
           context = {"profile": profile}
@@ -227,7 +227,7 @@ oc_lettings_site URLs
 In the "oc_lettings_site" application:
 
 **Code**:
-.. code-block:: python
+.. codeblock:: python
 
     from django.urls import path
     from . import views
@@ -245,7 +245,7 @@ lettings URLs
 In the "lettings" application:
 
 **Code**:
-.. code-block:: python
+.. codeblock:: python
 
     from django.urls import path
     from . import views
@@ -263,7 +263,7 @@ profiles URLs
 In the "profiles" application:
 
 **Code**:
-.. code-block:: python
+.. codeblock:: python
 
     from django.urls import path
     from . import views
@@ -286,19 +286,19 @@ it's important to note that any changes made here will not reflect on the deploy
 
 To utilize this local database, ensure that the ``DEBUG`` setting is set to ``True`` in your ``settings.py`` file. If it's not already set, you can make this adjustment as follows:
 
-.. code-block:: python
+.. codeblock:: python
 
    DEBUG = True
 
 Once you've configured the ``DEBUG`` setting appropriately, you can perform CRUD operations on this database using the Django shell. Simply run the following command:
 
-.. code-block:: shell
+.. codeblock:: shell
 
    python manage.py shell
 
 Here's an example demonstrating how to create objects in the database:
 
-.. code-block:: python
+.. codeblock:: python
 
    address1 = Address.objects.create(
        number=65,
