@@ -26,12 +26,11 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 2
 
-   Structure
-   Quality and Maintainability
-   Deployment
-
+   structure
+   quality_and_maintainability
+   deployment
+   
 The refactoring most important points is defined by:
 
 Before Intervention:
