@@ -24,9 +24,9 @@ Contents
 
 .. toctree::
 
-   :doc:`structure`
-   :doc:`quality_and_maintenability`
-   :doc:`deployment`
+   structure
+   quality_an_maintenability
+   deployement
 
 ===========
 Refactoring
@@ -62,3 +62,4 @@ After Intervention:
           return self.user.username
 
 The  inclusion of docstrings provides clear descriptions of the function's purpose and usage.
+
