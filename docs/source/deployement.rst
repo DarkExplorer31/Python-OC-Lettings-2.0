@@ -40,8 +40,8 @@ To create data, you can simply:
 - **Import the model**: Import the model for which you want to create an object: ``from lettings.models import Address``.
 - **Create the object**:
 
-.. code-block:: shell
-    
+.. code-block:: bash
+
     adresse1 = Address.objects.create(number=9, street="a street", city="City", state="USA"...)
 
 
