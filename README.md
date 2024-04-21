@@ -9,6 +9,8 @@ Welcome to the OC-Lettings 2.0 project! This repository contains the restructure
 
 See the website deployed [here](https://oc-lettings-2-0.onrender.com).
 
+See the complete documentation[here](https://python-oc-lettings-20.readthedocs.io/en/latest/index.html).
+
 Deployed on Render with a free instance. The first time you visit this address, the website may take some time to load.
 
 ## Table of Contents
