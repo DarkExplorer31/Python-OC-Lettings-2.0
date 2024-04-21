@@ -119,8 +119,8 @@ Error tracking with Sentry has also been implemented to ensure optimal maintaina
 
 Explanation:
 
-``sentry_sdk.init(``:  This function initializes Sentry in your application. It takes several parameters:
-    ``dsn``: The Sentry connection URL that we retrieved earlier.
-    ``enable_tracing``: This parameter enables performance tracing in Sentry. It is set to True here to enable tracing.
-    ``traces_sample_rate``: This parameter controls the sampling rate of performance traces. It is set to 0.1, which means that only 10% of requests will be sampled for performance tracing.
-    ``profiles_sample_rate)``: This parameter controls the sampling rate of performance profiles. It is also set to 0.1, which means that only 10% of profiles will be sampled.
+- ``sentry_sdk.init(``:  This function initializes Sentry in your application. It takes several parameters:
+- ``dsn``: The Sentry connection URL that we retrieved earlier.
+- ``enable_tracing``: This parameter enables performance tracing in Sentry. It is set to True here to enable tracing.
+- ``traces_sample_rate``: This parameter controls the sampling rate of performance traces. It is set to 0.1, which means that only 10% of requests will be sampled for performance tracing.
+- ``profiles_sample_rate)``: This parameter controls the sampling rate of performance profiles. It is also set to 0.1, which means that only 10% of profiles will be sampled.

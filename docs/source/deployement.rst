@@ -35,12 +35,13 @@ Online Database
 The online database is deployed via Render. It is built using PostgreSQL. I won't provide the admin, but the data is completely different between the local database and this one.
 To create data, you can simply:
 
-**Check DEBUG setting**: Make sure that ``DEBUG`` is set to ``False``.
-**Enter the Shell**: Access the Django shell using the command: ``python manage.py shell``.
-**Import the model**: Import the model for which you want to create an object: ``from lettings.models import Address``.
-**Create the object**:
+- **Check DEBUG setting**: Make sure that ``DEBUG`` is set to ``False``.
+- **Enter the Shell**: Access the Django shell using the command: ``python manage.py shell``.
+- **Import the model**: Import the model for which you want to create an object: ``from lettings.models import Address``.
+- **Create the object**:
 
 .. code-block:: shell
+    
     adresse1 = Address.objects.create(number=9, street="a street", city="City", state="USA"...)
 
 
