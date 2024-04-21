@@ -9,6 +9,10 @@ def copy_data_from_source_to_target(apps, schema_editor):
     try:
         SourceAddress = apps.get_model("oc_lettings_site", "Address")
         TargetAddress = apps.get_model("lettings", "Address")
+    except LookupError as e:
+        logger.error(
+            f"{e} - The Database has failed to import before data, now, the db is empty for address objects."
+        )
         for item in SourceAddress.objects.all():
             TargetAddress.objects.create(
                 number=item.number,
@@ -18,20 +22,16 @@ def copy_data_from_source_to_target(apps, schema_editor):
                 zip_code=item.zip_code,
                 country_iso_code=item.country_iso_code,
             )
-    except LookupError as e:
-        logger.error(
-            f"{e} - The Database has failed to import before data, now, the db is empty for address objects."
-        )
 
     try:
         SourceLetting = apps.get_model("oc_lettings_site", "Letting")
         TargetLetting = apps.get_model("lettings", "Letting")
-        for item in SourceLetting.objects.all():
-            TargetLetting.objects.create(title=item.title, address_id=item.address_id)
     except LookupError as e:
         logger.error(
             f"{e} - The Database has failed to import before data, now, the db is empty for letting objects."
         )
+        for item in SourceLetting.objects.all():
+            TargetLetting.objects.create(title=item.title, address_id=item.address_id)
 
 
 class Migration(migrations.Migration):

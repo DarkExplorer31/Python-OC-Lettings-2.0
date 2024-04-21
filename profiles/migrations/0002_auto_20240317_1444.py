@@ -8,14 +8,14 @@ def copy_data_from_source_to_target(apps, schema_editor):
     try:
         SourceProfile = apps.get_model("oc_lettings_site", "Profile")
         TargetProfile = apps.get_model("profiles", "Profile")
-        for item in SourceProfile.objects.all():
-            TargetProfile.objects.create(
-                user=item.user, favorite_city=item.favorite_city
-            )
     except LookupError as e:
         logger.error(
             f"{e} - The Database has failed to import before data, now, the db is empty for profile objects."
         )
+        for item in SourceProfile.objects.all():
+            TargetProfile.objects.create(
+                user=item.user, favorite_city=item.favorite_city
+            )
 
 
 class Migration(migrations.Migration):

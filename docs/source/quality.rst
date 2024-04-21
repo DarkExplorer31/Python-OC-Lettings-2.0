@@ -81,5 +81,45 @@ Here's an example of code in the ``test_profile.py`` file:
 
 All tests use Client() from ``django.test`` to test database transactions with views.
 
+Security
+--------
+For optimal security, certain practices have been implemented:
+
+- All sensitive variables are defined as environment variables in the .env file, which we retrieve using the Python dotenv module, so in case of collaboration, make sure to possess this file. They are also defined in the GitHub repository's secrets and as environment variables in Render.
+
+- Different Admin for production and local: The admin created on Render is very different from the one implemented locally. This allows to keep a secret administrator in production but accessible locally.
+    Locally, here is the admin used:
+        - Go to ``http://localhost:8000/admin``;
+        - Log in with the user ``admin``, password ``Abc1234!``;
+
+- Error templates 404 and 500 have been implemented to control what is displayed to the user.
+
+- Logs are customized in key functions."
+
 Sentry
 ------
+
+Error tracking with Sentry has also been implemented to ensure optimal maintainability. (see in the settings.py file)
+.. code-block:: python
+    # Initialize Sentry
+    sentry_dsn = os.getenv("SENTRY_DSN")
+    if sentry_dsn:
+        sentry_sdk.init(
+            dsn=sentry_dsn,
+            enable_tracing=True,
+            traces_sample_rate=0.1,
+            profiles_sample_rate=0.1,
+        )
+    else:
+        logger.warning(
+            "The SENTRY_DSN environment variable is not defined."
+            + " Please contact the previous developer to obtain the link."
+        )
+
+Explication:
+
+``sentry_sdk.init()``:  This function initializes Sentry in your application. It takes several parameters:
+    ``dsn``: The Sentry connection URL that we retrieved earlier.
+    ``enable_tracing``: This parameter enables performance tracing in Sentry. It is set to True here to enable tracing.
+    ``traces_sample_rate``: This parameter controls the sampling rate of performance traces. It is set to 0.1, which means that only 10% of requests will be sampled for performance tracing.
+    ``profiles_sample_rate``: This parameter controls the sampling rate of performance profiles. It is also set to 0.1, which means that only 10% of profiles will be sampled.
